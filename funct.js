@@ -2,7 +2,7 @@
 let numSquare = 9;
 let colors;
 let pickedCol;
-let sqClick;
+let sqClick = 0;
 let maxClick = 4;
 
 // Elements Selection
@@ -27,7 +27,7 @@ function init() {
     // color picker event listeners
     reset();
     squares[i].addEventListener("click", pickColSq);
-    squares[i].addEventListener("click", cCount);
+    //squares[i].addEventListener("click", cCount);
   }
   colorDisplay.textContent = pickedCol;
   resetBtn.addEventListener("click", reset);
@@ -35,19 +35,21 @@ function init() {
 
 function pickColSq() {
   let clickedCol = this.style.backgroundColor;
-  if (sqClick != maxClick) {
+    console.log(++sqClick);
+    
     if (clickedCol === pickedCol) {
-      message.textContent = "Correct!";
+      message.textContent = "Clicked just " +sqClick+ "Times Correct!";
+      //console.log(message.textContent);
+      
       changeCol(clickedCol);
       h1.style.backgroundColor = clickedCol;
       resetBtn.textContent = "Play Again?";
     } else {
-      message.textContent = "Try Again";
+      message.textContent = "Try Again || No of Clicks = " +sqClick ;
       this.style.backgroundColor = "#232323";
+      //reset();
     }
-  } else {
-    reset();
-  }
+  
 }
 
 function changeCol(color) {

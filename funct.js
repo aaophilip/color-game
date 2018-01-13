@@ -2,7 +2,7 @@
 let numSquare = 9;
 let colors;
 let pickedCol;
-let sqClick;
+let sqClick = 0;
 let maxClick = 4;
 
 // Elements Selection
@@ -12,6 +12,9 @@ let resetBtn = document.querySelector("#reset");
 let message = document.querySelector("#message");
 let h1 = document.querySelector("h1");
 let modeButtons = document.querySelectorAll(".mode");
+
+// Tool Tip details
+let toolTip = document.querySelector('.tooltiptext');
 
 // Code body
 init();
@@ -27,27 +30,28 @@ function init() {
     // color picker event listeners
     reset();
     squares[i].addEventListener("click", pickColSq);
-    squares[i].addEventListener("click", cCount);
+    //squares[i].addEventListener("click", cCount);
   }
   colorDisplay.textContent = pickedCol;
   resetBtn.addEventListener("click", reset);
 }
-
+let div;
 function pickColSq() {
   let clickedCol = this.style.backgroundColor;
-  if (sqClick != maxClick) {
-    if (clickedCol === pickedCol) {
-      message.textContent = "Correct!";
-      changeCol(clickedCol);
-      h1.style.backgroundColor = clickedCol;
-      resetBtn.textContent = "Play Again?";
-    } else {
-      message.textContent = "Try Again";
-      this.style.backgroundColor = "#232323";
-    }
+  toolTip.textContent = ++sqClick;
+
+  if (clickedCol === pickedCol) {
+    message.textContent = "Correct!";
+
+    changeCol(clickedCol);
+    h1.style.backgroundColor = clickedCol;
+    resetBtn.textContent = "Play Again?";
   } else {
-    reset();
+    message.textContent = "Try Again";
+    this.style.backgroundColor = "#232323";
   }
+  removeEventListener('click', pickColSq)
+
 }
 
 function changeCol(color) {
@@ -83,9 +87,7 @@ function reset() {
   h1.style.backgroundColor = "steelblue";
   message.textContent = "";
   resetBtn.textContent = "New Colors";
-  if (sqClick != sqClick) {
-    sqClick = 0;
-  }
+
   for (let i = 0; i < squares.length; i++) {
     if (colors[i]) {
       squares[i].style.backgroundColor = colors[i];
@@ -94,13 +96,13 @@ function reset() {
       squares[i].style.display = "none";
     }
   }
-  return (sqClick = 0);
 }
 
 function modeSel() {
-  modeButtons[0].classList.remove("selected");
+  /* modeButtons[0].classList.remove("selected");
   modeButtons[1].classList.remove("selected");
-  modeButtons[2].classList.remove("selected");
+  modeButtons[2].classList.remove("selected"); */
+  modeButtons.forEach((button) => button.classList.remove("selected"));
   this.classList.add("selected");
 
   if (this.textContent === "Easy") {

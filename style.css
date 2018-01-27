@@ -1,27 +1,32 @@
+:root {
+    --main-color: steelblue;
+    --container-color:#232323;
+    --white: white;
+}
 body {
-    background-color: #232323;
+    background-color: var(--container-color);
     margin: 0;
     font-family: "Avenir", "Montserrat";
 }
 
 h1 {
-    color: white;
+    color: var(--white);
     text-align: center;
     line-height: 1.1;
     font-weight: normal;
-    background: steelblue;
+    background: var(--main-color);
     margin: 0;
     text-transform: uppercase;
-    padding: 20px 0;
+    padding: 5px 0;
 }
 
 #colorDisplay {
-    font-size: 200%;
+    font-size: 200%
 }
 
 .selected {
-    color: white;
-    background-color: steelblue;
+    color: var(--white);
+    background-color: var(--main-color);
 }
 
 #message {
@@ -30,7 +35,7 @@ h1 {
 }
 
 #stripe {
-    background-color: white;
+    background-color: var(--white);
     height: 30px;
     text-align: center;
     color: black;
@@ -38,7 +43,7 @@ h1 {
 
 button {
     background: none;
-    color: steelblue;
+    color: var(--main-color);
     border: none;
     text-transform: uppercase;
     height: 100%;
@@ -51,16 +56,18 @@ button {
 }
 
 #container{
-    margin: 20px auto;
-    max-width: 600px;
+    /* margin: auto; */
+    height: 450px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(3, 130px);
+    grid-auto-rows: 130px;
+    justify-content: center;
+    align-content: center;
 }
 
 .square {
     background: royalblue;
-    padding-bottom: 30%;
-    width: 30%;
-    float: left;
-    margin: 1.66%;
     border-radius: 17.5%;
     transition: background 0.75s;
     -webkit-transition: background 0.75s;
@@ -68,8 +75,8 @@ button {
 }
 
 button:hover {
-    color: white;
-    background: steelblue;
+    color: var(--white);
+    background: var(--main-color);
 }
 
 /* Tooltip container */
@@ -77,7 +84,7 @@ button:hover {
     height: 20px;
     width: 100%;
     text-align: center;
-    color: steelblue;
+    color: var(--main-color);
     background-color: #fff;
     position: relative;
     display: inline-block;
@@ -89,7 +96,7 @@ button:hover {
     visibility: hidden;
     width: 200px;
     background-color: rgb(245, 239, 239);
-    color: steelblue;
+    color: var(--main-color);
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
